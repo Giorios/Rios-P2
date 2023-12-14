@@ -46,6 +46,19 @@ var mCurrentIndex = 0;
 // XMLHttpRequest variable
 var mRequest = new XMLHttpRequest();
 
+mRequest.onreadystatechange = function(){
+if (this.readyState == 4 && this.status == 200)
+	var response = JSON.parse(mRequest.responseText);
+	var location = response.imgLocation;
+	var description = response.description;
+	var date = response.date;
+	var path = response.imgPath;
+	var output = '';
+}
+mRequest.open("GET", "images.json");
+mRequest.send();
+
+
 // Array holding GalleryImage objects (see below).
 var mImages = [];
 
@@ -81,8 +94,11 @@ window.addEventListener('load', function() {
 
 function GalleryImage() {
 	//implement me as an object to hold the following data about an image:
-	//1. location where photo was taken
-	//2. description of photo
-	//3. the date when the photo was taken
-	//4. either a String (src URL) or an an HTMLImageObject (bitmap of the photo. https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
+	let location = response.imgLocation;
+	let description = response.description;
+	let date = response.date;
+	document.getElementById("photo").innerHTML = "imgPath";
+
 }
+
+console.log()
