@@ -33,7 +33,9 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-	//Add code here to access the #slideShow element.
+	// element.className = #slideshow;
+	document.getElementById("img").src=img
+
 	//Access the img element and replace its source
 	//with a new image from your images array which is loaded 
 	//from the JSON string
@@ -48,10 +50,10 @@ var mRequest = new XMLHttpRequest();
 
 mRequest.onreadystatechange = function fetchJSON(){
 if (this.readyState == 4 && this.status == 200){
-	var response = JSON.parse(mRequest.responseText);
+	response = JSON.parse(mRequest.responseText);
 }
 };
-mRequest.open("GET", "images.json", true);
+mRequest.open("GET", "images.json");
 mRequest.send();
 
 
@@ -99,4 +101,6 @@ function GalleryImage() {
 	let description
 	let date 
 	let img
+	images.json
 }
+console.log(location)
