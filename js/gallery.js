@@ -34,7 +34,7 @@ function animate() {
 
 function swapPhoto() {
 	// element.className = #slideshow;
-	document.getElementById("img").src=img
+	document.getElementById("thumbnail").src = path;
 
 	//Access the img element and replace its source
 	//with a new image from your images array which is loaded 
@@ -59,10 +59,10 @@ mRequest.send();
 
 // Array holding GalleryImage objects (see below).
  var mImages = [
+	description = "description",
     location = imgLocation,
-	description = description,
-	date = date,
-	path = imgPath
+	date = "date",
+	path = "imgPath"
 ];
 
 // Holds the retrived JSON information
@@ -103,4 +103,3 @@ function GalleryImage() {
 	let img
 	images.json
 }
-console.log(location)
