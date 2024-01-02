@@ -33,9 +33,7 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-	// element.className = #slideshow;
-	document.getElementById("thumbnail").src = path;
-
+	document.getElementById('photo').src = mImages[mCurrentIndex].url;
 	//Access the img element and replace its source
 	//with a new image from your images array which is loaded 
 	//from the JSON string
@@ -48,22 +46,8 @@ var mCurrentIndex = 0;
 // XMLHttpRequest variable
 var mRequest = new XMLHttpRequest();
 
-mRequest.onreadystatechange = function fetchJSON(){
-if (this.readyState == 4 && this.status == 200){
-	response = JSON.parse(mRequest.responseText);
-}
-};
-mRequest.open("GET", "images.json");
-mRequest.send();
-
-
 // Array holding GalleryImage objects (see below).
- var mImages = [
-	description = "description",
-    location = imgLocation,
-	date = "date",
-	path = "imgPath"
-];
+ var mImages = [];
 
 // Holds the retrived JSON information
 var mJson;
@@ -92,14 +76,37 @@ $(document).ready( function() {
 window.addEventListener('load', function() {
 	
 	console.log('window loaded');
-
+	fetchJSON();
 }, false);
 
 function GalleryImage() {
 	//implement me as an object to hold the following data about an image:
-	let location
-	let description
-	let date 
-	let img
-	images.json
+	let location;
+	let description;
+	let date;
+	let url;
+}
+
+function fetchJSON()
+{
+mRequest.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200){
+	mJson = JSON.parse(mRequest.responseText);
+	iterateJSON()
+}
+};
+mRequest.open("GET", mUrl, true);
+mRequest.send();
+}
+
+function iterateJSON()
+{
+	for(let i = 0; i < mJson.images.length; i++)
+	{
+		mImages[i] = new GalleryImage();
+		mImages[i].location = mJson.images[i].imgLocation;
+		mImages[i].description = mJson.images[i].description;
+		mImages[i].date = mJson.images[i].date;
+		mImages[i].url = mJson.images[i].imgPath;
+	}
 }
