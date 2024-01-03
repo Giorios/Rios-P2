@@ -33,12 +33,22 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-	document.getElementById('photo').src = mImages[mCurrentIndex].url;
 	//Access the img element and replace its source
 	//with a new image from your images array which is loaded 
 	//from the JSON string
+	document.getElementById('photo').src = mImages[mCurrentIndex].url;
+	document.getElementsByClassName('location')[0].innerHTML = "Location: " + mImages[mCurrentIndex].location
+	document.getElementsByClassName('description')[0].innerHTML = "Description: " + mImages[mCurrentIndex].description
+	document.getElementsByClassName('date')[0].innerHTML = "Date: " + mImages[mCurrentIndex].date
 	console.log('swap photo');
+
+	mCurrentIndex++;
+	if (mCurrentIndex == 13){
+		mCurrentIndex -= 13
+	};
+	console.log(mCurrentIndex)
 }
+
 
 // Counter for the mImages array
 var mCurrentIndex = 0;
@@ -69,7 +79,7 @@ function makeGalleryImageOnloadCallback(galleryImage) {
 $(document).ready( function() {
 	
 	// This initially hides the photos' metadata information
-	$('.details').eq(0).hide();
+	//$('.details').eq(0).hide();
 	
 });
 
