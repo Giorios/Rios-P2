@@ -120,3 +120,4 @@ function iterateJSON()
 		mImages[i].url = mJson.images[i].imgPath;
 	}
 }
+
