@@ -121,3 +121,20 @@ function iterateJSON()
 	}
 }
 
+document.getElementById("prevPhoto").onclick = function() {lastImg()};
+function lastImg() {
+	mCurrentIndex--;
+	if (mCurrentIndex == 0){
+		mCurrentIndex += 13
+	};
+}
+
+document.getElementById("nextPhoto").onclick = function() {nextImg()};
+function nextImg() {
+	mCurrentIndex++;
+	if (mCurrentIndex == 13){
+		mCurrentIndex -= 13
+	};
+}
+
+$( "#photo" ).last().on( "click", function() { $( "p" ).last().fadeToggle( "slow", "linear" ); } );
