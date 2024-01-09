@@ -121,20 +121,22 @@ function iterateJSON()
 	}
 }
 
-document.getElementById("prevPhoto").onclick = function() {lastImg()};
 function lastImg() {
 	mCurrentIndex--;
 	if (mCurrentIndex == 0){
 		mCurrentIndex += 13
 	};
-}
+};
+document.getElementById("prevPhoto").addEventListener("click", lastImg);
 
-document.getElementById("nextPhoto").onclick = function() {nextImg()};
 function nextImg() {
 	mCurrentIndex++;
 	if (mCurrentIndex == 13){
 		mCurrentIndex -= 13
 	};
-}
+};
+document.getElementById("nextPhoto").onclick = function() {nextImg()};
 
-$( "#photo" ).last().on( "click", function() { $( "p" ).last().fadeToggle( "slow", "linear" ); } );
+$( "img" ).eq(1).on( "click", function() {
+	$( "p.location, p.description, p.date" ).fadeToggle( "slow", "linear" );
+  } ); 
