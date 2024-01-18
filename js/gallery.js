@@ -33,6 +33,14 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
+
+	if(mCurrentIndex >= mImages.length){
+		mCurrentIndex = 0;
+	}
+	if(mCurrentIndex < 0) {
+		mCurrentIndex = mImages.length - 1;
+	}
+
 	//Access the img element and replace its source
 	//with a new image from your images array which is loaded 
 	//from the JSON string
@@ -42,6 +50,7 @@ function swapPhoto() {
 	document.getElementsByClassName('date')[0].innerHTML = "Date: " + mImages[mCurrentIndex].date
 	console.log('swap photo');
 
+	mLastFrameTime = 0
 	mCurrentIndex++;
 	if (mCurrentIndex == 13){
 		mCurrentIndex -= 13
@@ -78,9 +87,36 @@ function makeGalleryImageOnloadCallback(galleryImage) {
 
 $(document).ready( function() {
 	
+	$('#nextPhoto').position({
+		my: "right bottom",
+		at: "right bottom",
+		of: "#nav"
+	})
+
+	$('#prevPhoto').click(function(){
+		mCurrentIndex-=2;
+		swapPhoto();
+	})
+	$('#nextPhoto').click(function(){
+		swapPhoto();
+	})
 	// This initially hides the photos' metadata information
-	//$('.details').eq(0).hide();
-	
+	$('.details').eq(0).hide();
+
+	// CLICK HANDLER
+	let moreBtn = $('.moreIndicator')
+	moreBtn.click(function(){
+		if(moreBtn.hasClass('rot90'))
+		{
+			moreBtn.removeClass('rot90');
+			moreBtn.addClass('rot270');
+			details.fadeToggle( "slow", "linear" );
+		}
+		else {
+			moreBtn.removeClass('rot270');
+			moreBtn.addClass('rot90');
+		}
+	})
 });
 
 window.addEventListener('load', function() {
@@ -120,23 +156,3 @@ function iterateJSON()
 		mImages[i].url = mJson.images[i].imgPath;
 	}
 }
-
-function lastImg() {
-	mCurrentIndex--;
-	if (mCurrentIndex == 0){
-		mCurrentIndex += 13
-	};
-};
-document.getElementById("prevPhoto").addEventListener("click", lastImg);
-
-function nextImg() {
-	mCurrentIndex++;
-	if (mCurrentIndex == 13){
-		mCurrentIndex -= 13
-	};
-};
-document.getElementById("nextPhoto").onclick = function() {nextImg()};
-
-$( "img" ).eq(1).on( "click", function() {
-	$( "p.location, p.description, p.date" ).fadeToggle( "slow", "linear" );
-  } ); 
