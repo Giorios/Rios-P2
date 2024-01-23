@@ -156,3 +156,14 @@ function iterateJSON()
 		mImages[i].url = mJson.images[i].imgPath;
 	}
 }
+
+const currentLink = window.location.search;
+const newLink = new URLSearchParams(currentLink);
+console.log(currentLink)
+function differentUrl(){
+var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+if (queryString){
+	queryString = currentLink.split('?')[0];
+	url = json=images-short.json
+}
+}
