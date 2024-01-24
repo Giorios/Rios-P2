@@ -110,7 +110,7 @@ $(document).ready( function() {
 		{
 			moreBtn.removeClass('rot90');
 			moreBtn.addClass('rot270');
-			details.fadeToggle( "slow", "linear" );
+			$('details').fadeToggle( "slow", "linear" );
 		}
 		else {
 			moreBtn.removeClass('rot270');
@@ -157,13 +157,12 @@ function iterateJSON()
 	}
 }
 
-const currentLink = window.location.search;
-const newLink = new URLSearchParams(currentLink);
-console.log(currentLink)
-function differentUrl(){
-var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
-if (queryString){
-	queryString = currentLink.split('?')[0];
-	url = json=images-short.json
-}
-}
+function getAllUrlParams(url) {
+
+	var queryString = url ? url.split('=')[1] : window.location.search.slice(1);
+	if (queryString = 'index.html?json') {
+	$('url').append("=images.json")
+	}
+  }
+  console.log(getAllUrlParams('index.html?json=images-short.json'));
+
