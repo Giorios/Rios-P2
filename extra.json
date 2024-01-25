@@ -2,12 +2,12 @@
     "images": [
         {
             "imgPath": "img/places/Forest.jpg",
-            "imgLocation": "Australia",
+            "imgLocation": "Italy",
             "description": "Farm",
             "date": "09/19/2010"
         },
         {
-            "imgPath": "img/places/Mounatin.jpg",
+            "imgPath": "img/places/Mountain.jpg",
             "imgLocation": "Austria",
             "description": "Far Mountain",
             "date": "06/21/1999"
@@ -19,7 +19,7 @@
             "date": "05/01/2005"
         },
         {
-            "imgPath": "img/places/Swamp.jpg",
+            "imgPath": "img/places/Swamp.jpeg",
             "imgLocation": "Louisiana",
             "description": "Swamp",
             "date": "11/05/2009"

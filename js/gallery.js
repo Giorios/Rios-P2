@@ -33,10 +33,11 @@ function animate() {
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
 function swapPhoto() {
-
+	//allows the slideshow to go to the previous images
 	if(mCurrentIndex >= mImages.length){
 		mCurrentIndex = 0;
 	}
+	
 	if(mCurrentIndex < 0) {
 		mCurrentIndex = mImages.length - 1;
 	}
@@ -49,7 +50,7 @@ function swapPhoto() {
 	document.getElementsByClassName('description')[0].innerHTML = "Description: " + mImages[mCurrentIndex].description
 	document.getElementsByClassName('date')[0].innerHTML = "Date: " + mImages[mCurrentIndex].date
 	console.log('swap photo');
-
+	//allows the slideshow to loop
 	mLastFrameTime = 0
 	mCurrentIndex++;
 	if (mCurrentIndex == 13){
@@ -87,12 +88,23 @@ function makeGalleryImageOnloadCallback(galleryImage) {
 
 $(document).ready( function() {
 	
+	const queryString = window.location.search;
+	console.log(queryString);
+	const urlParams = new URLSearchParams(queryString);
+
+	//Check for Params
+	if(urlParams.has('json'))
+	{
+		mUrl = urlParams.get('json');
+	}
+
+	//positioning for the buttons
 	$('#nextPhoto').position({
 		my: "right bottom",
 		at: "right bottom",
 		of: "#nav"
 	})
-
+	//next and previous button functionality
 	$('#prevPhoto').click(function(){
 		mCurrentIndex-=2;
 		swapPhoto();
@@ -133,6 +145,7 @@ function GalleryImage() {
 	let url;
 }
 
+//loads the json file
 function fetchJSON()
 {
 mRequest.onreadystatechange = function() {
@@ -144,7 +157,7 @@ if (this.readyState == 4 && this.status == 200){
 mRequest.open("GET", mUrl, true);
 mRequest.send();
 }
-
+//grabs the objects from the json file for the images
 function iterateJSON()
 {
 	for(let i = 0; i < mJson.images.length; i++)
@@ -156,13 +169,4 @@ function iterateJSON()
 		mImages[i].url = mJson.images[i].imgPath;
 	}
 }
-
-function getAllUrlParams(url) {
-
-	var queryString = url ? url.split('=')[1] : window.location.search.slice(1);
-	if (queryString = 'index.html?json') {
-	$('url').append("=images.json")
-	}
-  }
-  console.log(getAllUrlParams('index.html?json=images-short.json'));
 
